@@ -3,10 +3,8 @@ package com.example.littlelemon
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.NavHost
 
 @Composable
@@ -24,7 +22,7 @@ fun Navigation(navController: NavHostController) {
     val email: String? = sharedPreferences.getString("email", "")
 
     val startDestinationRoute =
-        if (firstName != "" && firstName != "" && email != ""){
+        if (firstName != "" && lastName != "" && email != ""){
             Home.route
         } else {
             Onboarding.route

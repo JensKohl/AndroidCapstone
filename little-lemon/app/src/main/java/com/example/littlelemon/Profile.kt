@@ -1,12 +1,10 @@
 package com.example.littlelemon
 
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -107,6 +105,33 @@ fun Profile(navController: NavController){
                 colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.White),
                 label = { Text(text = "EMail") },
             )
+        }
+
+        Row(
+            modifier = Modifier
+                .padding(top=100.dp, bottom = 10.dp)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.Bottom,
+        ) {
+            Button(
+                onClick = {
+
+                    var editor = sharedPreferences.edit()
+                    editor.clear()
+
+                    navController.navigate(Onboarding.route)
+                },
+                colors = ButtonDefaults.buttonColors(Color(0xFFF4CE14)),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(1.dp)
+            ) {
+                Text(
+                    text = "Log out",
+                    fontSize = 16.sp,
+                    color = Color.Black
+                )
+            }
         }
     }
 }

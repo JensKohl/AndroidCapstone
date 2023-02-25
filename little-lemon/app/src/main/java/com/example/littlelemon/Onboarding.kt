@@ -1,14 +1,9 @@
 package com.example.littlelemon
 
-import android.content.Context
-import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.ButtonDefaults.buttonColors
@@ -27,7 +22,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Onboarding (navController: NavHostController ) {
     var firstName by remember {mutableStateOf("")}
@@ -54,7 +48,6 @@ fun Onboarding (navController: NavHostController ) {
         }
         Row(
             modifier = Modifier
-                //.padding(5.dp)
                 .padding(top=30.dp, bottom = 50.dp)
                 .fillMaxWidth()
         ) {
@@ -71,7 +64,8 @@ fun Onboarding (navController: NavHostController ) {
             modifier = Modifier
                 .padding(top=10.dp, bottom = 10.dp)
                 .fillMaxWidth()
-        ) {
+        )
+        {
             OutlinedTextField(
                 value = firstName,
                 modifier = Modifier
@@ -102,7 +96,8 @@ fun Onboarding (navController: NavHostController ) {
             modifier = Modifier
                 .padding(top=10.dp, bottom = 10.dp)
                 .fillMaxWidth()
-        ) {
+        )
+        {
             OutlinedTextField(
                 value = email,
                 modifier = Modifier
@@ -113,36 +108,32 @@ fun Onboarding (navController: NavHostController ) {
                 placeholder = { Text(text = "Enter your mail") }
             )
         }
-
         Row(
             modifier = Modifier
                 .padding(top=100.dp, bottom = 10.dp)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.Bottom,
-        ) {
+        )
+        {
             Button(
                 onClick = {
                     if (firstName == "" || lastName == "" || email == "") {
-
                         Toast.makeText(
                             context,
                             "Registration unsuccessful. Please enter all data",
                             Toast.LENGTH_LONG)
                             .show()
-
                     } else {
-
                         val sharedPreference =  context.getSharedPreferences(
                             "LittleLemon",
                             ComponentActivity.MODE_PRIVATE
                         )
-                        var editor = sharedPreference.edit()
-
+                        val editor = sharedPreference.edit()
                         editor.putString("firstName", firstName)
                         editor.putString("lastName", lastName)
                         editor.putString("email", email)
-
-                        editor.commit()
+                        editor.apply()
+                        //editor.commit()
 
                         Toast.makeText(
                             context,
@@ -166,4 +157,3 @@ fun Onboarding (navController: NavHostController ) {
         }
     }
 }
-
