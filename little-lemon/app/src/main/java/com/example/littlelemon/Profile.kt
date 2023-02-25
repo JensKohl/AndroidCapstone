@@ -117,7 +117,9 @@ fun Profile(navController: NavController){
                 onClick = {
 
                     var editor = sharedPreferences.edit()
-                    editor.clear()
+                    editor
+                        .clear()
+                        .commit()
 
                     navController.navigate(Onboarding.route)
                 },

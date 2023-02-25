@@ -179,7 +179,7 @@ fun Home(navController: NavController?){
                     onClick = {
                         StarterFilter = !StarterFilter
                               },
-                    colors = ButtonDefaults.buttonColors(Color(0xFFEDEFEE)),
+                    colors = if (StarterFilter) ButtonDefaults.buttonColors(Color(0xFFFBDABB)) else ButtonDefaults.buttonColors(Color(0xFFEDEFEE)),
                     shape = RoundedCornerShape(50),
                     modifier = Modifier
                         .padding(4.dp)
@@ -192,7 +192,7 @@ fun Home(navController: NavController?){
                 }
                 OutlinedButton(
                     onClick = {MainFilter = !MainFilter},
-                    colors = ButtonDefaults.buttonColors(Color(0xFFEDEFEE)),
+                    colors = if (MainFilter) ButtonDefaults.buttonColors(Color(0xFFFBDABB)) else ButtonDefaults.buttonColors(Color(0xFFEDEFEE)),
                     shape = RoundedCornerShape(50),
                     modifier = Modifier
                         .padding(4.dp)
@@ -205,7 +205,7 @@ fun Home(navController: NavController?){
                 }
                 OutlinedButton(
                     onClick = {DessertFilter = !DessertFilter},
-                    colors = ButtonDefaults.buttonColors(Color(0xFFEDEFEE)),
+                    colors = if (DessertFilter) ButtonDefaults.buttonColors(Color(0xFFFBDABB)) else ButtonDefaults.buttonColors(Color(0xFFEDEFEE)),
                     shape = RoundedCornerShape(50),
                     modifier = Modifier
                         .padding(4.dp)
@@ -218,7 +218,7 @@ fun Home(navController: NavController?){
                 }
                 OutlinedButton(
                     onClick = {DrinksFilter = !DrinksFilter},
-                    colors = ButtonDefaults.buttonColors(Color(0xFFEDEFEE)),
+                    colors = if (DrinksFilter) ButtonDefaults.buttonColors(Color(0xFFFBDABB)) else ButtonDefaults.buttonColors(Color(0xFFEDEFEE)),
                     shape = RoundedCornerShape(50),
                     modifier = Modifier
                         .padding(4.dp)
@@ -241,7 +241,6 @@ fun Home(navController: NavController?){
             )
         }
 
-        // TODO: hier die when Abfrage und dann remember Values abfragen??
         when {
             StarterFilter -> {
                 menuItems = menuItems.filter {
